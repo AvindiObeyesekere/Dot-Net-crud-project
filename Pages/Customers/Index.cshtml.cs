@@ -10,15 +10,30 @@ namespace projdotnet.Pages.Customers
 {
     public class Index : PageModel
     {
-        private readonly ILogger<Index> _logger;
-
-        public Index(ILogger<Index> logger)
-        {
-            _logger = logger;
-        }
-
+        
+        public List<CustomerInfo> CustomerList {get; set;} =[];
+       
         public void OnGet()
         {
+            try{
+                string connectionString = "Server=.;Database=crmdb;Trusted_Connection=True;TrustServerCertificate=True; ";
+            }catch(Exception ex){
+                Console.WriteLine("An error" + ex.Message);
+            }
         }
+    }
+
+    public class CustomerInfo{
+        public int Id{get;set;}
+        public string Firstname { get; set; } = "";
+        public string Lastname { get; set; } = "";
+        public string Email { get; set; }= "";
+        public string Phone { get; set; }= "";
+        public string Address { get; set; }= "";
+        public string Company { get; set; }= "";
+        public string Notes { get; set; }= "";
+        public string CreatedAt { get; set; }= "";
+
+
     }
 }
