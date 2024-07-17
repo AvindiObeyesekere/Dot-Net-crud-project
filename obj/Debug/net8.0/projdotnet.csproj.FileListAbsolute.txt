@@ -28,3 +28,4 @@ C:\Users\User\projdotnet\obj\Debug\net8.0\refint\projdotnet.dll
 C:\Users\User\projdotnet\obj\Debug\net8.0\projdotnet.pdb
 C:\Users\User\projdotnet\obj\Debug\net8.0\projdotnet.genruntimeconfig.cache
 C:\Users\User\projdotnet\obj\Debug\net8.0\ref\projdotnet.dll
+C:\Users\User\projdotnet\obj\Debug\net8.0\projdotnet.sourcelink.json
