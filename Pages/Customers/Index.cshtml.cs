@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.Data.SqlClient;
 namespace projdotnet.Pages.Customers
 {
     public class Index : PageModel
@@ -17,6 +17,9 @@ namespace projdotnet.Pages.Customers
         {
             try{
                 string connectionString = "Server=.;Database=crmdb;Trusted_Connection=True;TrustServerCertificate=True; ";
+                using (SqlConnection connection = new SqlConnection(connectionString)){
+                    connection.Open();
+                }
             }catch(Exception ex){
                 Console.WriteLine("An error" + ex.Message);
             }
