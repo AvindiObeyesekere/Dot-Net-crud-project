@@ -11,7 +11,7 @@ namespace projdotnet.Pages.Customers
     public class Index : PageModel
     {
         
-        public List<CustomerInfo> CustomerList {get; set;} =[];
+        public List<CustomerInfo> CustomersList {get; set;} =[];
        
         public void OnGet()
         {
@@ -19,6 +19,27 @@ namespace projdotnet.Pages.Customers
                 string connectionString = "Server=.;Database=crmdb;Trusted_Connection=True;TrustServerCertificate=True; ";
                 using (SqlConnection connection = new SqlConnection(connectionString)){
                     connection.Open();
+
+                    string sql = "SELECT * FROM customers ORDER BY id DESC";
+                    using (SqlCommand command = new SqlCommand(sql ,connection)){
+                        
+                        using (SqlDataReader reader = command.ExecuteReader()){
+                            while(reader.Read()){
+                                CustomerInfo customerInfo = new CustomerInfo();
+                                customerInfo.Id = reader.GetInt32(0);
+                                customerInfo.Firstname = reader.GetString(1);
+                                customerInfo.Lastname = reader.GetString(2);
+                                customerInfo.Email = reader.GetString(3);
+                                customerInfo.Phone = reader.GetString(4);
+                                customerInfo.Address = reader.GetString(5);
+                                customerInfo.Company = reader.GetString(6);
+                                customerInfo.Notes = reader.GetString(7);
+                                customerInfo.CreatedAt = reader.GetDateTime(8).ToString("MM/dd/yyyy");
+                           
+                                CustomersList.Add(customerInfo);
+                            }
+                        }
+                    }
                 }
             }catch(Exception ex){
                 Console.WriteLine("An error" + ex.Message);
